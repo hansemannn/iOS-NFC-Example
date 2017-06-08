@@ -62,10 +62,13 @@ extension NFCTableViewController {
 // MARK: NFCNDEFReaderSessionDelegate
 
 extension NFCTableViewController : NFCNDEFReaderSessionDelegate {
+    
+    // Called when the reader-session expired, you invalidated the dialog or accessed an invalidated session
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
         print("Error reading NFC: \(error.localizedDescription)")
     }
     
+    // Called when a new set of NDEF messages is found
     func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
         print("New NFC Tag detected:")
         
@@ -78,7 +81,10 @@ extension NFCTableViewController : NFCNDEFReaderSessionDelegate {
             }
         }
         
+        // Add the new messages to our found messages
         self.nfcMessages.append(messages)
+        
+        // Reload our table-view to display the new data-set
         self.tableView.reloadData()
     }
 }
