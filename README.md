@@ -37,31 +37,6 @@ Finally, write an extension that implements the `NFCNDEFReaderSessionDelegate`:
 ```swift
 extension NFCTableViewController : NFCNDEFReaderSessionDelegate {
     
-    func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
-        print("Error reading NFC: \(error.localizedDescription)")
-    }
-    
-    func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
-        print("New NFC Tag detected:")
-        
-        for message in messages {
-            for record in message.records {
-                print("Type name format: \(record.typeNameFormat)")
-                print("Payload: \(record.payload)")
-                print("Type: \(record.type)")
-                print("Identifier: \(record.identifier)")
-            }
-        }
-        
-        self.nfcMessages.append(messages)
-        self.tableView.reloadData()
-    }
-}
-```
-Optionally, since we use a `UITableView` to display the found messages, prepare your table-view delegates:
-```swift
-extension NFCTableViewController : NFCNDEFReaderSessionDelegate {
-    
     // Called when the reader-session expired, you invalidated the dialog or accessed an invalidated session
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
         print("Error reading NFC: \(error.localizedDescription)")
@@ -85,6 +60,33 @@ extension NFCTableViewController : NFCNDEFReaderSessionDelegate {
         
         // Reload our table-view to display the new data-set
         self.tableView.reloadData()
+    }
+}
+```
+Optionally, since we use a `UITableView` to display the discovered messages, prepare your table-view delegates:
+```swift
+extension NFCTableViewController {
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return self.nfcMessages.count
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.nfcMessages[section].count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "\(self.nfcMessages[section].count) Messages"
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NFCTableCell", for: indexPath)
+        let nfcTag = self.nfcMessages[indexPath.section][indexPath.row]
+        
+        cell.textLabel?.text = "\(nfcTag.records.count) Records"
+        cell.accessoryType = .disclosureIndicator
+        
+        return cell
     }
 }
 ```
