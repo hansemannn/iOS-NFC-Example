@@ -92,5 +92,11 @@ extension NFCTableViewController {
 ```
 That's it! Run the app on your device and scan your NFC NDEF-Tag.
 
+## User Experiences
+Initial tests of another user (thanks [@tinue](https://github.com/tinue)) shown these following results:
+1. Scanning an NDEF-tag usually works once directly after rebooting the iPhone. From then on, it may or may not work, usually it doesn't work and another reboot is required. This was seen with Beta 1 of iOS 11.
+2. If the RFID-tag is fresh (empty), or does not contain an NDEF-tag (e.g. a credit-card), the reader times out (error 201).
+3. If the RFID-tag contains encrypted sectors, the reader throws error 200 (`readerSessionInvalidationErrorUserCanceled`).
+
 ## Author
 Hans Knöchel ([@hansemannnn](https://twitter.com/hansemannnn))
