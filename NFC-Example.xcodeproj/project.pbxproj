@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DB856C3E1EE9751700DE4334 /* NFCTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB856C3D1EE9751700DE4334 /* NFCTableViewController.swift */; };
+		DBCADE2A1EEEA810004488FE /* NFCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCADE291EEEA810004488FE /* NFCTableViewCell.swift */; };
 		DBE74F551EE9409700535D1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE74F541EE9409700535D1D /* AppDelegate.swift */; };
 		DBE74F5A1EE9409700535D1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBE74F581EE9409700535D1D /* Main.storyboard */; };
 		DBE74F5C1EE9409700535D1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBE74F5B1EE9409700535D1D /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		DB856C3C1EE9741D00DE4334 /* NFC-Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "NFC-Example.entitlements"; sourceTree = "<group>"; };
 		DB856C3D1EE9751700DE4334 /* NFCTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCTableViewController.swift; sourceTree = "<group>"; };
+		DBCADE291EEEA810004488FE /* NFCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCTableViewCell.swift; sourceTree = "<group>"; };
 		DBE74F511EE9409700535D1D /* NFC-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NFC-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBE74F541EE9409700535D1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBE74F591EE9409700535D1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				DBE74F5B1EE9409700535D1D /* Assets.xcassets */,
 				DB856C3C1EE9741D00DE4334 /* NFC-Example.entitlements */,
 				DBE74F601EE9409700535D1D /* Info.plist */,
+				DBCADE291EEEA810004488FE /* NFCTableViewCell.swift */,
 			);
 			path = "NFC-Example";
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBCADE2A1EEEA810004488FE /* NFCTableViewCell.swift in Sources */,
 				DBE74F551EE9409700535D1D /* AppDelegate.swift in Sources */,
 				DB856C3E1EE9751700DE4334 /* NFCTableViewController.swift in Sources */,
 			);

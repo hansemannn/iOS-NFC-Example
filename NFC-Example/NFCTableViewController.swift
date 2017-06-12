@@ -27,6 +27,8 @@ class NFCTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.register(NFCTableViewCell.self, forCellReuseIdentifier: "NFCTableCell")
+        
         // Create the NFC Reader Session when the app starts
         self.nfcSession = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
     }
@@ -49,13 +51,23 @@ extension NFCTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NFCTableCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NFCTableCell", for: indexPath) as! NFCTableViewCell
         let nfcTag = self.nfcMessages[indexPath.section][indexPath.row]
         
         cell.textLabel?.text = "\(nfcTag.records.count) Records"
         cell.accessoryType = .disclosureIndicator
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nfcTag = self.nfcMessages[indexPath.section][indexPath.row]
+        
+        let alert = UIAlertController(title: " \(nfcTag.records.count) Records found", message: "TODO: Display record-details?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -84,7 +96,9 @@ extension NFCTableViewController : NFCNDEFReaderSessionDelegate {
         // Add the new messages to our found messages
         self.nfcMessages.append(messages)
         
-        // Reload our table-view to display the new data-set
-        self.tableView.reloadData()
+        // Reload our table-view on the main-thread to display the new data-set
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
