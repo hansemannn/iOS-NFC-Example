@@ -122,6 +122,20 @@ Initial tests of another user (thanks [@tinue](https://github.com/tinue)) shown 
 2. If the RFID-tag is fresh (empty), or does not contain an NDEF-tag (e.g. a credit-card), the reader times out (error 201).
 3. If the RFID-tag contains encrypted sectors, the reader throws error 200 (`readerSessionInvalidationErrorUserCanceled`).
 
+## RFID Functionality
+In this example, we used the `NFCNDEFReaderSession` to handle NDEF NFC-chips. There actually is another class inside
+`CoreNFC`, called `NFCISO15693ReaderSession`. [ISO15693](https://de.wikipedia.org/wiki/ISO_15693) is the specification
+for RFID-tags, and it comes along with own delegates and a class describing an RFID-tag (`NFCISO15693Tag`).
+
+I have played around with that API as well and added the `RFID` button to the current implementation, so you can switch
+between NFC- and RFID-detection. You can even send custom commands to the RFID-chip as demonstrated in the
+`readerSession:didDetectTags:` delegate and the `NFCISO15693CustomCommandConfiguration` class.
+
+Unfortunately, iOS 11 Beta 1 will throw a `Feature not supported` error, since the
+API might not be finished, yet. It will likely result in another value inside the `com.apple.developer.nfc.readersession.formats`
+entitlements key as well. Using something like `ISO15693` or `RFID` will not work so far and prevent the build from finishing.
+Let's see what Apple will publish in the upcoming Beta versions of iOS 11! 🙂
+
 ## References
 I used the following resources to get started with NDEF NFC-tags:
 - [x] [https://flomio.com/2012/05/ndef-basics/](https://flomio.com/2012/05/ndef-basics/)

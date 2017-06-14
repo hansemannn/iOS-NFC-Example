@@ -104,14 +104,14 @@ extension NFCTableViewController : NFCNDEFReaderSessionDelegate {
     
     // Called when a new set of NDEF messages is found
     func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
-        print("New NFC Tag detected:")
+        print("\(messages.count) new NFC Messages detected:")
         
         for message in messages {
             for record in message.records {
-                print("Type name format: \(NFCTableViewController.formattedTypeNameFormat(from: record.typeNameFormat))")
-                print("Payload: \(record.payload)")
-                print("Type: \(record.type)")
-                print("Identifier: \(record.identifier)")
+                print("- TNF (TypeNameFormat): \(NFCTableViewController.formattedTypeNameFormat(from: record.typeNameFormat))")
+                print("- Payload: \(String(data: record.payload, encoding: .ascii)!)")
+                print("- Type: \(record.type)")
+                print("- Identifier: \(record.identifier)")
             }
         }
         

@@ -8,6 +8,71 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--RFID Example-->
+        <scene sceneID="bth-rX-GUl">
+            <objects>
+                <tableViewController id="Jps-3G-p8a" customClass="RFIDTableViewController" customModule="NFC_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dIi-JW-Fhi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NFCTableCell" textLabel="3d4-ID-0g0" style="IBUITableViewCellStyleDefault" id="M0O-Lh-334">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M0O-Lh-334" id="Zl5-UF-YFz">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3d4-ID-0g0">
+                                            <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Jps-3G-p8a" id="g9n-AT-mMd"/>
+                            <outlet property="delegate" destination="Jps-3G-p8a" id="au4-Vh-Vbd"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="RFID Example" id="vGz-wH-jRb">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="41d-X5-IK4">
+                            <connections>
+                                <action selector="dismissViewController:" destination="Jps-3G-p8a" id="sAi-Cn-zBA"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Start Search" id="IQ8-S5-UL9">
+                            <connections>
+                                <action selector="startRFIDSearchButtonTapped:" destination="Jps-3G-p8a" id="MaZ-aQ-IMi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9hh-ox-Gxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2033" y="-546"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Pgm-A8-hC5">
+            <objects>
+                <navigationController id="wR4-Da-dCQ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DIF-XQ-vgo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Jps-3G-p8a" kind="relationship" relationship="rootViewController" id="bqa-Wv-9ys"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lwl-tj-DN5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1305" y="-546"/>
+        </scene>
         <!--NFC Example-->
         <scene sceneID="ctO-6q-cP3">
             <objects>
@@ -17,12 +82,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NFCTableCell" id="tSa-LQ-4Jl">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NFCTableCell" textLabel="Eas-6U-UQq" style="IBUITableViewCellStyleDefault" id="tSa-LQ-4Jl">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tSa-LQ-4Jl" id="Dw7-jb-B9N">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eas-6U-UQq">
+                                            <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -32,6 +106,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="NFC Example" id="P37-09-LRB">
+                        <barButtonItem key="leftBarButtonItem" title="RFID" id="4i8-5A-DeI">
+                            <connections>
+                                <segue destination="wR4-Da-dCQ" kind="presentation" id="m5f-wN-dCS"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Start Search" id="HKe-XC-bTi">
                             <connections>
                                 <action selector="startNFCSearchButtonTapped:" destination="YYx-cn-ZTR" id="9lE-ye-A70"/>
