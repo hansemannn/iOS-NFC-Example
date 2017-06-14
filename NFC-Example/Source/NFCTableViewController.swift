@@ -32,6 +32,25 @@ class NFCTableViewController: UITableViewController {
         // Create the NFC Reader Session when the app starts
         self.nfcSession = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
     }
+    
+    class func formattedTypeNameFormat(from typeNameFormat: NFCTypeNameFormat) -> String {
+        switch typeNameFormat {
+        case .empty:
+            return "Empty"
+        case .nfcWellKnown:
+            return "NFC Well Known"
+        case .media:
+            return "Media"
+        case .absoluteURI:
+            return "Absolute URI"
+        case .nfcExternal:
+            return "NFC External"
+        case .unchanged:
+            return "Unchanges"
+        default:
+            return "Unknown"
+        }
+    }
 }
 
 // MARK: UITableViewDelegate / UITableViewDataSource
@@ -47,7 +66,10 @@ extension NFCTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "\(self.nfcMessages[section].count) Messages"
+        let numberOfMessages = self.nfcMessages[section].count
+        let headerTitle = numberOfMessages == 1 ? "One Message" : "\(numberOfMessages) Messages"
+        
+        return headerTitle
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,6 +84,7 @@ extension NFCTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nfcTag = self.nfcMessages[indexPath.section][indexPath.row]
         
+        // TODO: Open a new VC to display all records
         let alert = UIAlertController(title: " \(nfcTag.records.count) Records found", message: "TODO: Display record-details?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         
@@ -85,7 +108,7 @@ extension NFCTableViewController : NFCNDEFReaderSessionDelegate {
         
         for message in messages {
             for record in message.records {
-                print("Type name format: \(record.typeNameFormat)")
+                print("Type name format: \(NFCTableViewController.formattedTypeNameFormat(from: record.typeNameFormat))")
                 print("Payload: \(record.payload)")
                 print("Type: \(record.type)")
                 print("Identifier: \(record.identifier)")
