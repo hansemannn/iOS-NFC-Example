@@ -82,8 +82,10 @@ extension NFCTableViewController : NFCNDEFReaderSessionDelegate {
         // Add the new messages to our found messages
         self.nfcMessages.append(messages)
         
-        // Reload our table-view to display the new data-set
-        self.tableView.reloadData()
+        // Reload our table-view on the main-thread to display the new data-set
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 ```
@@ -100,15 +102,17 @@ extension NFCTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "\(self.nfcMessages[section].count) Messages"
+        let numberOfMessages = self.nfcMessages[section].count
+        let headerTitle = numberOfMessages == 1 ? "One Message" : "\(numberOfMessages) Messages"
+        
+        return headerTitle
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NFCTableCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NFCTableCell", for: indexPath) as! NFCTableViewCell
         let nfcTag = self.nfcMessages[indexPath.section][indexPath.row]
         
         cell.textLabel?.text = "\(nfcTag.records.count) Records"
-        cell.accessoryType = .disclosureIndicator
         
         return cell
     }
