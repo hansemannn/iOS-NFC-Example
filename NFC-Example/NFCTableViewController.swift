@@ -55,7 +55,6 @@ extension NFCTableViewController {
         let nfcTag = self.nfcMessages[indexPath.section][indexPath.row]
         
         cell.textLabel?.text = "\(nfcTag.records.count) Records"
-        cell.accessoryType = .disclosureIndicator
         
         return cell
     }

@@ -82,13 +82,13 @@
 			isa = PBXGroup;
 			children = (
 				DBE74F541EE9409700535D1D /* AppDelegate.swift */,
+				DBCADE291EEEA810004488FE /* NFCTableViewCell.swift */,
 				DB856C3D1EE9751700DE4334 /* NFCTableViewController.swift */,
 				DBE74F581EE9409700535D1D /* Main.storyboard */,
 				DBE74F5D1EE9409700535D1D /* LaunchScreen.storyboard */,
 				DBE74F5B1EE9409700535D1D /* Assets.xcassets */,
 				DB856C3C1EE9741D00DE4334 /* NFC-Example.entitlements */,
 				DBE74F601EE9409700535D1D /* Info.plist */,
-				DBCADE291EEEA810004488FE /* NFCTableViewCell.swift */,
 			);
 			path = "NFC-Example";
 			sourceTree = "<group>";
