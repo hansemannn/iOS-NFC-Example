@@ -46,7 +46,7 @@ class NFCTableViewController: UITableViewController {
         case .nfcExternal:
             return "NFC External"
         case .unchanged:
-            return "Unchanges"
+            return "Unchanged"
         default:
             return "Unknown"
         }
