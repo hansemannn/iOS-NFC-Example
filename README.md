@@ -14,7 +14,7 @@ A quick example showing how to use the Core NFC API in iOS 11 and Swift 4.
 </array>
 ```
 * Provisioning Profile entitled with the `NFC Tag Reading` capability:
-<img src="https://abload.de/img/bildschirmfoto2017-06kguc2.png" width="500" alt="iOS Developer Center: NFC Capability" />
+<img src="https://abload.de/img/68747470733a2f2f6162606s1g.png" width="500" alt="iOS Developer Center: NFC Capability" />
 
 ## Understanding NDEF-Records
 
