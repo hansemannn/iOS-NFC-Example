@@ -120,6 +120,21 @@ extension NFCTableViewController {
 ```
 That's it! Run the app on your device and scan your NFC NDEF-Tag.
 
+### Example Output
+```
+New NFC Messages (1) detected:
+ - 2 Records:
+   - TNF (TypeNameFormat): NFC Well Known
+   - Payload: google.com
+   - Type: 1 bytes
+   - Identifier: 0 bytes
+
+   - TNF (TypeNameFormat): NFC Well Known
+   - Payload: enTest
+   - Type: 1 bytes
+   - Identifier: 0 bytes
+```
+
 ## User Experiences
 Initial tests of another user (thanks [@tinue](https://github.com/tinue)) shown these following results:
 1. Scanning an NDEF-tag usually works once directly after rebooting the iPhone. From then on, it may or may not work, usually it doesn't work and another reboot is required. This was seen with Beta 1 of iOS 11.
