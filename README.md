@@ -125,12 +125,12 @@ That's it! Run the app on your device and scan your NFC NDEF-Tag.
 New NFC Messages (1) detected:
  - 2 Records:
    - TNF (TypeNameFormat): NFC Well Known
-   - Payload: google.com
+   - Payload: google.com
    - Type: 1 bytes
    - Identifier: 0 bytes
 
    - TNF (TypeNameFormat): NFC Well Known
-   - Payload: enTest
+   - Payload: enTest
    - Type: 1 bytes
    - Identifier: 0 bytes
 ```
