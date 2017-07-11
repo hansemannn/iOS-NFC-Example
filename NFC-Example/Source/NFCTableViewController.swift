@@ -21,6 +21,10 @@ class NFCTableViewController: UITableViewController {
     
     // Start the search when tapping the "Start Search" button
     @IBAction func startNFCSearchButtonTapped(_ sender: Any) {
+        guard self.nfcSession.isReady else {
+            return print("The NFC-session is not ready so far, try again!")
+        }
+
         self.nfcSession.begin()
     }
     
@@ -32,6 +36,7 @@ class NFCTableViewController: UITableViewController {
         
         // Create the NFC Reader Session when the app starts
         self.nfcSession = NFCNDEFReaderSession(delegate: self, queue: DispatchQueue.main, invalidateAfterFirstRead: false)
+        self.nfcSession.alertMessage = "You can scan NFC-tags by holding them behind the top of your iPhone."
     }
     
     class func formattedTypeNameFormat(from typeNameFormat: NFCTypeNameFormat) -> String {

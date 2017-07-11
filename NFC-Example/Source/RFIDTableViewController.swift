@@ -19,8 +19,11 @@ class RFIDTableViewController: UITableViewController {
     
     // Start the search when tapping the "Start Search" button
     @IBAction func startRFIDSearchButtonTapped(_ sender: Any) {
-        
-        // NOTE: iOS 11 Beta 1 will throw a "Feature not supported" error, so they probably did not finish
+        guard self.rfidSession.isReady else {
+            return print("The RFID-session is not ready so far, try again!")
+        }
+
+        // NOTE: iOS 11 Beta (1-3) will throw a "Feature not supported" error, so they probably did not finish
         // exposing the RFID-related API's so far.
         self.rfidSession.begin()
     }
@@ -37,6 +40,7 @@ class RFIDTableViewController: UITableViewController {
         
         // Create the RFID Reader Session when the app starts
         self.rfidSession = NFCISO15693ReaderSession(delegate: self, queue: nil)
+        self.rfidSession.alertMessage = "You can scan RFID-tags by holding them behind the top of your iPhone."
     }
 }
 

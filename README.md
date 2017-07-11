@@ -4,7 +4,7 @@
 A quick example showing how to use the Core NFC API in iOS 11 and Swift 4.
 
 ## Prerequisites
-* Xcode 9 Beta
+* Xcode 9 Beta (tested with Beta 3)
 * iOS 11 device (iPhone 7 / iPhone 7 Plus)
 * NFC capability-key added to your project's `.entitlements` file
 ```xml
