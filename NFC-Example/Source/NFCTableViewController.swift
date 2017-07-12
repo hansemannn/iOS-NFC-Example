@@ -21,10 +21,6 @@ class NFCTableViewController: UITableViewController {
     
     // Start the search when tapping the "Start Search" button
     @IBAction func startNFCSearchButtonTapped(_ sender: Any) {
-        guard self.nfcSession.isReady else {
-            return print("The NFC-session is not ready so far, try again!")
-        }
-
         self.nfcSession.begin()
     }
     

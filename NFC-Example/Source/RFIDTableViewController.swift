@@ -19,10 +19,6 @@ class RFIDTableViewController: UITableViewController {
     
     // Start the search when tapping the "Start Search" button
     @IBAction func startRFIDSearchButtonTapped(_ sender: Any) {
-        guard self.rfidSession.isReady else {
-            return print("The RFID-session is not ready so far, try again!")
-        }
-
         // NOTE: iOS 11 Beta (1-3) will throw a "Feature not supported" error, so they probably did not finish
         // exposing the RFID-related API's so far.
         self.rfidSession.begin()
