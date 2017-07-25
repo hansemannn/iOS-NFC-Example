@@ -19,8 +19,11 @@ class RFIDTableViewController: UITableViewController {
     
     // Start the search when tapping the "Start Search" button
     @IBAction func startRFIDSearchButtonTapped(_ sender: Any) {
-        // NOTE: iOS 11 Beta (1-3) will throw a "Feature not supported" error, so they probably did not finish
+        // NOTE: iOS 11 Beta 1-2 will throw a "Feature not supported" error, so they probably did not finish
         // exposing the RFID-related API's so far.
+
+        // NOTE: iOS 11 Beta 3-4 will show the scan-dialog, but then fail with an error. They seem to still 
+        // not figured out how to expose it properly.
         self.rfidSession.begin()
     }
     
