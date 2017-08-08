@@ -1,5 +1,5 @@
 # 📱 iOS11 NFC-Example
-###### Last Update: July 25, 2017 | iOS 11 Beta 4
+###### Last Update: August 08, 2017 | iOS 11 Beta 5
 
 A quick example showing how to use the Core NFC API in iOS 11 and Swift 4.
 
@@ -39,8 +39,7 @@ the developer is interested in. There are currently four (undocumented) properti
 4. `payload`: The actual payload of the record. Accessing it depends on the specified `typeNameFormat` as described above.
 
 ## Getting Started
-First, import the `CoreNFC` framework. Note: Xcode 9 B1 will throw an error if you select a Simulator instead of
-a device. Apple will probably guard that in later Beta versions and provide a `isSupported` method.
+First, import the `CoreNFC` framework. 
 ```swift
 import CoreNFC
 ```

@@ -22,7 +22,7 @@ class RFIDTableViewController: UITableViewController {
         // NOTE: iOS 11 Beta 1-2 will throw a "Feature not supported" error, so they probably did not finish
         // exposing the RFID-related API's so far.
 
-        // NOTE: iOS 11 Beta 3-4 will show the scan-dialog, but then fail with an error. They seem to still 
+        // NOTE: iOS 11 Beta 3-5 will show the scan-dialog, but then fail with an error. They seem to still 
         // not figured out how to expose it properly.
         self.rfidSession.begin()
     }
