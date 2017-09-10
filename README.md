@@ -1,5 +1,5 @@
 # 📱 iOS11 NFC-Example
-###### Last Update: August 21, 2017 | iOS 11 Beta 6
+###### Last Update: September 10, 2017 | iOS 11 Beta 10
 
 A quick example showing how to use the Core NFC API in iOS 11 and Swift 4.
 
