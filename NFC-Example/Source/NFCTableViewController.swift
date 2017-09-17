@@ -24,15 +24,19 @@ class NFCTableViewController: UITableViewController {
         self.nfcSession.begin()
     }
     
+    func initializeNFCSession() {
+        // Create the NFC Reader Session when the app starts
+        self.nfcSession = NFCNDEFReaderSession(delegate: self, queue: DispatchQueue.main, invalidateAfterFirstRead: false)
+        self.nfcSession.alertMessage = "You can scan NFC-tags by holding them behind the top of your iPhone."
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Register our table-cell to display the records
         self.tableView.register(NFCTableViewCell.self, forCellReuseIdentifier: "NFCTableCell")
         
-        // Create the NFC Reader Session when the app starts
-        self.nfcSession = NFCNDEFReaderSession(delegate: self, queue: DispatchQueue.main, invalidateAfterFirstRead: false)
-        self.nfcSession.alertMessage = "You can scan NFC-tags by holding them behind the top of your iPhone."
+        self.initializeNFCSession()
     }
     
     class func formattedTypeNameFormat(from typeNameFormat: NFCTypeNameFormat) -> String {
@@ -105,6 +109,8 @@ extension NFCTableViewController : NFCNDEFReaderSessionDelegate {
     // Called when the reader-session expired, you invalidated the dialog or accessed an invalidated session
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
         print("NFC-Session invalidated: \(error.localizedDescription)")
+        // initialize a new session
+        self.initializeNFCSession()
     }
     
     // Called when a new set of NDEF messages is found
