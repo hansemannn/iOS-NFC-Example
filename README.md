@@ -56,15 +56,18 @@ private var nfcSession: NFCNDEFReaderSession!
 // Reference the found NFC messages
 private var nfcMessages: [[NFCNDEFMessage]] = []
 ```
-After that, assign your `nfcSession`:
+After that, assign and start your `nfcSession`:
 ```swift
 // Create the NFC Reader Session when the app starts
 self.nfcSession = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
 
 // A custom description that helps users understand how they can use NFC reader mode in your app.
 self.nfcSession.alertMessage = "You can hold you NFC-tag to the back-top of your iPhone"
+
+// Begin scanning
+self.nfcSession.begin()
 ```
-Finally, write an extension that implements the `NFCNDEFReaderSessionDelegate`:
+Finally, listen for NFC-related events by writing an extension that implements the `NFCNDEFReaderSessionDelegate`:
 ```swift
 extension NFCTableViewController : NFCNDEFReaderSessionDelegate {
     
