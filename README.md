@@ -67,7 +67,7 @@ self.nfcSession.alertMessage = "You can hold you NFC-tag to the back-top of your
 // Begin scanning
 self.nfcSession.begin()
 ```
-Finally, write an extension that implements the `NFCNDEFReaderSessionDelegate`:
+Finally, listen for NFC-related events by writing an extension that implements the `NFCNDEFReaderSessionDelegate`:
 ```swift
 extension NFCTableViewController : NFCNDEFReaderSessionDelegate {
     
