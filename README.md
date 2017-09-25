@@ -1,12 +1,12 @@
 # 📱 iOS 11 NFC-Example
-###### Last Update: September 17, 2017 | iOS 11 GM
 
 A quick example showing how to use the Core NFC API in iOS 11 and Swift 4.
 
 ## Prerequisites
-* Xcode 9 Beta
+* Xcode 9
 * iOS 11 device (iPhone 7 / iPhone 7 Plus)
-* NFC capability-key added to your project's `.entitlements` file
+* Xcode capability "`Near Field Communication Tag Reading`" enabled **OR**
+* NFC capability-key added to your project's `.entitlements` file:
 ```xml
 <key>com.apple.developer.nfc.readersession.formats</key>
 <array>
@@ -34,7 +34,7 @@ the developer is interested in. There are currently four (undocumented) properti
     5. `.nfcExternal`: The record contains a value that uses an external RTD name specifiction
     6. `.unknown`: The record type is unknown, the type length has to be set to `0`.
     7. `.unchanged`: The record payload is the intermediate or even final chunk of data. This can be used when there is a large number of data that is splitted into multiple chunks of data.
-2. `type`: The Record Type Definition (RTD) of the record. iOS 11 describes it as a `Data` type, Android has constants (like [`RTD_TEXT`](https://developer.android.com/reference/android/nfc/NdefRecord.html#RTD_TEXT)), so either later iOS 11 beta versions will expose similar ones as well, or the developer needs to create enumerations for it. I will try keep this updated during the Beta cycles!
+2. `type`: The Record Type Definition (RTD) of the record. iOS 11 describes it as a `Data` type, Android has constants (like [`RTD_TEXT`](https://developer.android.com/reference/android/nfc/NdefRecord.html#RTD_TEXT))~~, so either later iOS 11 beta versions will expose similar ones as well, or the developer needs to create enumerations for it. I will try keep this updated during the Beta cycles!~~ *Update: Not available in iOS 11*.
 3. `identifier`: A unique identifier of the record.
 4. `payload`: The actual payload of the record. Accessing it depends on the specified `typeNameFormat` as described above.
 
@@ -139,7 +139,8 @@ New NFC Messages (1) detected:
 
 ## User Experiences
 Initial tests of another user (thanks [@tinue](https://github.com/tinue)) shown these following results:
-1. Scanning an NDEF-tag usually works once directly after rebooting the iPhone. From then on, it may or may not work, usually it doesn't work and another reboot is required. This was seen with Beta 1-4 of iOS 11.
+1. Scanning an NDEF-tag usually works once directly after rebooting the iPhone. From then on, it may or may not work, usually it doesn't work and another reboot is required. This was seen with 
+1-4 of iOS 11.
 2. If the RFID-tag is fresh (empty), or does not contain an NDEF-tag (e.g. a credit-card), the reader times out (error 201).
 3. If the RFID-tag contains encrypted sectors, the reader throws error 200 (`readerSessionInvalidationErrorUserCanceled`).
 
@@ -158,6 +159,9 @@ It will likely result in another value inside the `com.apple.developer.nfc.reade
 entitlements key as well. Using something like `ISO15693` or `RFID` will not work so far and prevent the build from finishing.
 Let's see what Apple will publish in the upcoming Beta versions of iOS 11! 🙂
 
+**UPDATE**: Still no clarification from Apple in the final version of iOS 11. Feel free to follow [this discussion](https://github.com/hansemannn/iOS11-NFC-Example/issues/8)
+if you have related issues.
+
 ## References
 I used the following resources to get started with NDEF NFC-tags:
 - [x] [https://flomio.com/2012/05/ndef-basics/](https://flomio.com/2012/05/ndef-basics/)
@@ -166,7 +170,7 @@ I used the following resources to get started with NDEF NFC-tags:
 - [x] [https://gototags.com/nfc/ndef/](https://gototags.com/nfc/ndef/)
 
 ## Cross-Platform Usage
-If you are using a cross-platform solution for your application, [Appcelerator Titanium](http://www.appcelerator.com/mobile-app-development-products/) has an open source [NFC module](https://github.com/appcelerator-modules/ti.nfc) for both Android and iOS (Beta).
+If you are using a cross-platform solution for your application, [Appcelerator Titanium](http://www.appcelerator.com/mobile-app-development-products/) has an open source [NFC module](https://github.com/appcelerator-modules/ti.nfc) for both Android and iOS.
 
 ## Author
 Hans Knöchel ([@hansemannnn](https://twitter.com/hansemannnn))
