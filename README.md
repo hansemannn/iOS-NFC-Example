@@ -5,13 +5,18 @@ A quick example showing how to use the Core NFC API in iOS 11 and Swift 4.
 ## Prerequisites
 * Xcode 9
 * iOS 11 device (iPhone 7 / iPhone 7 Plus)
+* NFC-permissions added to your Info.plist:
+```xml
+    <key>NFCReaderUsageDescription</key>
+	<string>YOUR_PRIVACY_DESCRIPTION</string>
+ ```
 * Xcode capability "`Near Field Communication Tag Reading`" enabled **OR**
 * NFC capability-key added to your project's `.entitlements` file:
 ```xml
-<key>com.apple.developer.nfc.readersession.formats</key>
-<array>
-    <string>NDEF</string>
-</array>
+    <key>com.apple.developer.nfc.readersession.formats</key>
+    <array>
+        <string>NDEF</string>
+    </array>
 ```
 * Provisioning Profile entitled with the `NFC Tag Reading` capability:
 <img src="https://abload.de/img/68747470733a2f2f6162606s1g.png" width="500" alt="iOS Developer Center: NFC Capability" />
