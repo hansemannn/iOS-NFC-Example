@@ -1,10 +1,8 @@
-# 📱 iOS 11 NFC-Example
+# 📱 iOS NFC-Example
 
-A quick example showing how to use the Core NFC API in iOS 11 and Swift 4.
+A quick example showing how to use the Core NFC API in iOS and Swift.
 
 ## Prerequisites
-* Xcode 9
-* iOS 11 device (iPhone 7 / iPhone 7 Plus)
 * NFC-permissions added to your Info.plist:
 ```xml
 <key>NFCReaderUsageDescription</key>
@@ -39,7 +37,7 @@ the developer is interested in. There are currently four (undocumented) properti
     5. `.nfcExternal`: The record contains a value that uses an external RTD name specifiction
     6. `.unknown`: The record type is unknown, the type length has to be set to `0`.
     7. `.unchanged`: The record payload is the intermediate or even final chunk of data. This can be used when there is a large number of data that is splitted into multiple chunks of data.
-2. `type`: The Record Type Definition (RTD) of the record. iOS 11 describes it as a `Data` type, Android has constants (like [`RTD_TEXT`](https://developer.android.com/reference/android/nfc/NdefRecord.html#RTD_TEXT))~~, so either later iOS 11 beta versions will expose similar ones as well, or the developer needs to create enumerations for it. I will try keep this updated during the Beta cycles!~~ *Update: Not available in iOS 11*.
+2. `type`: The Record Type Definition (RTD) of the record. iOS describes it as a `Data` type, Android has constants (like [`RTD_TEXT`](https://developer.android.com/reference/android/nfc/NdefRecord.html#RTD_TEXT))
 3. `identifier`: A unique identifier of the record.
 4. `payload`: The actual payload of the record. Accessing it depends on the specified `typeNameFormat` as described above.
 
@@ -147,8 +145,7 @@ New NFC Messages (1) detected:
 
 ## User Experiences
 Initial tests of another user (thanks [@tinue](https://github.com/tinue)) shown these following results:
-1. Scanning an NDEF-tag usually works once directly after rebooting the iPhone. From then on, it may or may not work, usually it doesn't work and another reboot is required. This was seen with 
-1-4 of iOS 11.
+1. Scanning an NDEF-tag usually works once directly after rebooting the iPhone. From then on, it may or may not work, usually it doesn't work and another reboot is required.
 2. If the RFID-tag is fresh (empty), or does not contain an NDEF-tag (e.g. a credit-card), the reader times out (error 201).
 3. If the RFID-tag contains encrypted sectors, the reader throws error 200 (`readerSessionInvalidationErrorUserCanceled`).
 
@@ -160,15 +157,6 @@ for RFID-tags, and it comes along with own delegates and a class describing an R
 I have played around with that API as well and added the `RFID` button to the current implementation, so you can switch
 between NFC- and RFID-detection. You can even send custom commands to the RFID-chip as demonstrated in the
 `readerSession:didDetectTags:` delegate and the `NFCISO15693CustomCommandConfiguration` class.
-
-Unfortunately, iOS 11 Beta 1-2 will throw a `Feature not supported` error and Beta 3-4 will open the scan-dialog but
-abort immediately with an error. They probably did not finish implementing it, so raise a radar to remind them 🙌!
-It will likely result in another value inside the `com.apple.developer.nfc.readersession.formats`
-entitlements key as well. Using something like `ISO15693` or `RFID` will not work so far and prevent the build from finishing.
-Let's see what Apple will publish in the upcoming Beta versions of iOS 11! 🙂
-
-**UPDATE**: Still no clarification from Apple in the final version of iOS 11. Feel free to follow [this discussion](https://github.com/hansemannn/iOS11-NFC-Example/issues/8)
-if you have related issues.
 
 ## References
 I used the following resources to get started with NDEF NFC-tags:
